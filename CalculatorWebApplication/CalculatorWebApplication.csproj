@@ -112,6 +112,12 @@
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="WebForm1.aspx" />
+    <Content Include="Service References\CalculatorService\CalculatorWebApplication.CalculatorService.ArrayOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CalculatorService\CalculatorWebApplication.CalculatorService.GetCalculationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\CalculatorService\configuration91.svcinfo" />
     <None Include="Service References\CalculatorService\configuration.svcinfo" />
     <None Include="Service References\CalculatorService\Reference.svcmap">

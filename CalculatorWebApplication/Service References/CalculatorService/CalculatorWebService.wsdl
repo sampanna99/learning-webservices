@@ -17,6 +17,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetCalculations">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCalculationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCalculationsResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AddSoapIn">
@@ -25,10 +40,20 @@
   <wsdl:message name="AddSoapOut">
     <wsdl:part name="parameters" element="tns:AddResponse" />
   </wsdl:message>
+  <wsdl:message name="GetCalculationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCalculations" />
+  </wsdl:message>
+  <wsdl:message name="GetCalculationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCalculationsResponse" />
+  </wsdl:message>
   <wsdl:portType name="CalculatorWebServiceSoap">
     <wsdl:operation name="Add">
       <wsdl:input message="tns:AddSoapIn" />
       <wsdl:output message="tns:AddSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalculations">
+      <wsdl:input message="tns:GetCalculationsSoapIn" />
+      <wsdl:output message="tns:GetCalculationsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CalculatorWebServiceSoap" type="tns:CalculatorWebServiceSoap">
@@ -42,11 +67,29 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCalculations">
+      <soap:operation soapAction="http://tempuri.org/GetCalculations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CalculatorWebServiceSoap12" type="tns:CalculatorWebServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Add">
       <soap12:operation soapAction="http://tempuri.org/Add" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCalculations">
+      <soap12:operation soapAction="http://tempuri.org/GetCalculations" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

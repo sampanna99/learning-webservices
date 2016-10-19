@@ -13,8 +13,7 @@ namespace WebServerDemonstration
     // [System.Web.Script.Services.ScriptService]
     public class CalculatorWebService : System.Web.Services.WebService
     {
-
-        [WebMethod(EnableSession =true)]
+        [WebMethod(EnableSession = true)]
         public int Add(int firstNumber, int secondNumber)
         {
             List<string> calculations;
@@ -34,6 +33,21 @@ namespace WebServerDemonstration
             Session["CALCULATIONS"] = calculations;
 
             return firstNumber + secondNumber;
+        }
+
+        [WebMethod(EnableSession = true, Description = "This method adds 2 numbers", CacheDuration = 20)]
+        public List<string> GetCalculations()
+        {
+            if (Session["CALCULATIONS"] == null)
+            {
+                List<string> calculations = new List<string>();
+                calculations.Add("you haven't performed any calculations");
+                return calculations;
+            }
+            else
+            {
+                return (List<string>)Session["CALCULATIONS"];
+            }
         }
     }
 }
